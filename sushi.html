@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="uft-8">
+    <meta name="description" content="You have to focus Hazem, this will determine your continuity in this training">
+    <meta name="Languages used" content="HTML,CSS,JavaScript">
+    <meta name="author" content="Hazem Haddad">
+    <meta name="Purpose of this web page" content="Student attendance and absence system">
+    <link rel="stylesheet" href="./sushi sauce.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
+    <script src="table2excel.js"></script>
+</head>
+
+<body>
+    <div class="father">
+        <h1> Attendance for 7/7/2022 </h1>
+        <table id="table">
+            <tbody id="tableBody">
+                <tr>
+                    <th>Num</th>
+                    <th>Student ID</th>
+                    <th>Student Name</th>
+                    <th colspan="3">Attendance</th>
+                </tr>
+                <tr>
+                    <td> 1</td>
+                    <td> 201082</td>
+                    <td>Hazem Haddad</td>
+                    <td><button class="green" onclick="change_row(0,'g')" id="p"> &#9989 </button></td>
+                    <td><button class="red" onclick="change_row(0,'r')" id="p2"> &#10060</button></td>
+                    <td><button class="gray" onclick="change_row(0,'gr')" id="p3"> &#9201</button></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>201156</td>
+                    <td>Basel Ebedo</td>
+                    <td><button class="green" onclick="change_row(1,'g')">&#9989</button></td>
+                    <td><button class="red" onclick="change_row(1,'r')"> &#10060 </button></td>
+                    <td><button class="gray" onclick="change_row(1,'gr')"> &#9201</button></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>132043</td>
+                    <td>Abeer Dana</td>
+                    <td><button class="green" class="green" onclick="change_row(2,'g')">&#9989</button></td>
+                    <td><button class="red" onclick="change_row(2,'r')">&#10060</button></td>
+                    <td><button class="gray" onclick="change_row(2,'gr')"> &#9201</button></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>030121</td>
+                    <td>Motaz Mohammed</td>
+                    <td><button class="green" class="green" onclick="change_row(3,'g')">&#9989</button></td>
+                    <td><button class="red" onclick="change_row(3,'r')">&#10060</button></td>
+                    <td><button class="gray" onclick="change_row(3,'gr')"> &#9201</button></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>030121</td>
+                    <td>Aseel yaseen</td>
+                    <td><button class="green" class="green" onclick="change_row(4,'g')">&#9989</button></td>
+                    <td><button class="red" onclick="change_row(4,'r')">&#10060</button></td>
+                    <td><button class="gray" onclick="change_row(4,'gr')"> &#9201</button></td>
+                </tr>
+                <tr>
+                    <th colspan="3"> statistics</th>
+                    <th><output id="cc">0</output></th>
+                    <th><output id="ca">0</output></th>
+                    <th><output id="cl">0</output></th>
+                </tr>
+            </tbody>
+        </table>
+        <div class="mother">
+            <button class="buttonEnd" onclick="appear_adding_list()">Add Student</button>
+            <button class="buttonEnd" id="exel"> Save</button>
+            <button class="buttonEnd" onclick="reset()">Clear All</button>
+        </div>
+    </div>
+    <div class="grandba" id="grandba">
+        <div class="add">
+            <h2>Add new Student</h2>
+            <div class="input">
+                <label for="id">Student ID</label>
+                <input type="text" maxlength="7" required id="id">
+                <label for="Fname">First Name</label>
+                <input type="text" maxlength="9" required id="firstname">
+                <label for="Ename">Last Name</label>
+                <input type="text" maxlength="9" required id="secondname">
+                <p><small>Warning: Adding student will reset the sheet !</small></p>
+                <button onclick="insert()">Save</button>
+                <button onclick="disappear_adding_list()">cancel</button>
+            </div>
+        </div>
+    </div>
+    <script src="./chopsticks.js"></script>
+</body>
+
+</html>
