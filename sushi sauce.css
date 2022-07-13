@@ -202,7 +202,7 @@ button {
 
 .buttonEnd:before {
     content: '';
-    background: linear-gradient(45deg, rgb(0, 195, 255) 40%, rgb(255, 5, 5) 35%, rgb(251, 255, 0) 100% ,rgb(116, 255, 116) 90% );
+    background: linear-gradient(45deg, rgb(0, 195, 255) 40%, rgb(255, 5, 5) 35%, rgb(251, 255, 0) 100%, rgb(116, 255, 116) 90%);
     position: absolute;
     top: -2px;
     left: -2px;
@@ -322,6 +322,36 @@ button {
 
 }
 
+.w {
+    width: 308px;
+    height: 240px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.findLabel {
+    border: 1px solid rgb(170, 170, 170);
+    width: 90%;
+    height: 150px;
+    margin-top: 10px;
+    border-radius: 6px;
+    background-color: #ffffff;
+    padding: 15px;
+    
+}
+
+.question {
+    font-family: sans-serif;
+    margin-top: 5px;
+}
+
+.findLabel:hover {
+    box-shadow: rgba(126, 186, 255, 0.35) 0px 5px 15px;
+
+}
+
 .grandba>.add>.input>button:hover {
-    box-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.4);
 }

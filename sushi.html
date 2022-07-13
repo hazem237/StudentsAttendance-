@@ -75,6 +75,7 @@
             <button class="buttonEnd" onclick="appear_adding_list()">Add Student</button>
             <button class="buttonEnd" id="exel"> Save</button>
             <button class="buttonEnd" onclick="reset()">Clear All</button>
+            <button class="buttonEnd" onclick="appear_searching_list()">Search</button>
         </div>
     </div>
     <div class="grandba" id="grandba">
@@ -90,6 +91,32 @@
                 <p><small>Warning: Adding student will reset the sheet !</small></p>
                 <button onclick="insert()">Save</button>
                 <button onclick="disappear_adding_list()">cancel</button>
+            </div>
+        </div>
+    </div>
+    <div class="grandba" id="grandba2" >
+        <div class="add" style="height: 600px;">
+            <h2>Search about Student</h2>
+            <div class="input">
+                <p><small>Please enter the student id you want to search for</small></p>
+                <label for="id_find">Student ID</label>
+                <input type="text" maxlength="7" required id="id_find">
+                <button onclick="find_student()">Search</button>
+                <button onclick="disappear_search_list()">cancel</button>
+                <div class="w">
+                    <label class="question">Found ?</label>
+                    <label class="findLabel" id="found">
+                        <output id="find"></output>
+                    </label>
+                    <label class="question">Student Name</label>
+                    <label class="findLabel">
+                        <output id="sn"></output>
+                    </label>
+                    <label class="question">Student Attendees</label>
+                    <label class="findLabel">
+                        <output id="sa"></output>
+                    </label>
+                </div>
             </div>
         </div>
     </div>

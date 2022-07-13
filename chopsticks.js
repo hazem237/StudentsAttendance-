@@ -4,14 +4,49 @@
   I wrote a crazy code, but it worked.
    Please, if you do not understand any of this, tell me*/
 
+const my_array = [
+    {
+        num: 1,
+        student_id: 201082,
+        student_name: "Hazem Haddad",
+        Attendees: "not Determine yet"
 
+    }
+    ,
+    {
+        num: 2,
+        student_id: 201156,
+        student_name: "Basel Ebedo",
+        Attendees: "not Determine yet"
+
+    },
+    {
+        num: 3,
+        student_id: 132043,
+        student_name: "Abeer Dana"
+        , Attendees: "not Determine yet"
+    },
+    {
+        num: 4,
+        student_id: 030121,
+        student_name: "Motaz Mohammed"
+        , Attendees: "not Determine yet"
+    },
+    {
+        num: 5,
+        student_id: 030121,
+        student_name: "Aseel yaseen"
+        , Attendees: "not Determine yet"
+    }
+
+]
 const grandba = document.getElementById('grandba');
 const table = document.getElementById('table');
 let counterNum = 5;
 let counter1 = 0;
 let counter2 = 0;
 let counter3 = 0;
-const green = document.getElementsByClassName("green");
+var green = document.getElementsByClassName("green");
 var red = document.getElementsByClassName("red");
 var gray = document.getElementsByClassName("gray");
 let special_counter = green.length;
@@ -51,6 +86,7 @@ function change_row(index, key) {
         green[index].style.opacity = 0.60;
         counter1++;
         cc.innerHTML = counter1;
+        my_array[index].Attendees = "Present";
 
     }
     else if (key == 'r') {
@@ -66,6 +102,7 @@ function change_row(index, key) {
 
         counter2++;
         ca.innerHTML = counter2;
+        my_array[index].Attendees = "Absent";
     }
     else {
 
@@ -78,6 +115,7 @@ function change_row(index, key) {
         gray[index].style.opacity = 0.60;
         counter3++;
         cl.innerHTML = counter3;
+        my_array[index].Attendees = "late";
     }
 
 
@@ -108,6 +146,9 @@ function reset() {
         ca.innerHTML = counter2;
         cl.innerHTML = counter3;
     }
+    for (let a = 0; a < my_array.length; a++) {
+        my_array[a].Attendees = "not Determine yet";
+    }
 
 }
 
@@ -129,6 +170,7 @@ function special_changing(v, key) {
         green[v - 1].disabled = true;
         green[v - 1].style.opacity = 0.60;
         counter1++;
+        my_array[v-1].Attendees="Present";
         cc.innerHTML = counter1;
     }
     else if (key == 'r') {
@@ -141,6 +183,7 @@ function special_changing(v, key) {
         red[v - 1].disabled = true;
         red[v - 1].style.opacity = 0.60;
         counter2++;
+        my_array[v-1].Attendees="Absent";
         ca.innerHTML = counter2;
     }
     else {
@@ -153,6 +196,7 @@ function special_changing(v, key) {
         gray[v - 1].disabled = true;
         gray[v - 1].style.opacity = 0.60;
         counter3++;
+        my_array[v-1].Attendees="Late";
         cl.innerHTML = counter3;
     }
 
@@ -180,15 +224,15 @@ function insert() {
         let x = document.createElement("button");
         x.innerHTML = "&#9989";
         x.className = "green";
-        x.id = "x";
+
         let y = document.createElement("button");
         y.innerHTML = " &#10060";
         y.className = "red";
-        y.id = "y";
+
         let z = document.createElement("button");
         z.innerHTML = "&#9201";
         z.className = "gray";
-        z.id = "z";
+
 
 
         cell1.innerHTML = counterNum;
@@ -198,7 +242,14 @@ function insert() {
         cell4.appendChild(x);
         cell5.appendChild(y);
         cell6.appendChild(z);
-
+        my_array.push(
+            {
+                num: counterNum,
+                student_id: id,
+                student_name: s
+                , Attendees: "not Determine yet"
+            }
+        );
 
         grandba.style.display = "none";
 
@@ -210,7 +261,47 @@ function insert() {
         alert("Hello dear !!, you left our table without data, please go back and enter the data or you can simply cancel the process by clicking on the 'cancel' button");
 
 }
+function appear_searching_list() {
+    document.getElementById("grandba2").style.display = "flex";
+}
+function disappear_search_list() {
+    document.getElementById("grandba2").style.display = "none";
+    
+}
+function find_student() {
+    const id_find = document.getElementById('id_find').value;
+    const find = document.getElementById('find');
+    const sn = document.getElementById('sn');
+    const sa = document.getElementById('sa');
+    const Found=document.getElementById('found');
+    var x = new Boolean(false);
+    if (id_find.length == 0)
+        alert("Hello dear !!, you left us without data, please go back and enter the data or you can simply cancel the process by clicking on the 'cancel' button");
+    else {
+        for (let a = 0; a < my_array.length; a++) {
+            if (my_array[a].student_id == id_find) {
+                find.innerHTML = " Student Found ";
+                Found.style.background="#a9ffa6";
+                Found.style.color="black";
+                sn.innerHTML = my_array[a].student_name;
+                sa.innerHTML = my_array[a].Attendees;
+                x = true;
+                break;
+            }
 
+        }
+        if (x == false) {
+
+            find.innerHTML = " Student Not Found ";
+            Found.style.background="#e32110";
+            Found.style.color="white";
+            sn.innerHTML="";
+            sa.innerHTML="";
+        }
+
+
+    }
+}
 document.getElementById('exel').addEventListener('click', function () {
     var table2excel = new Table2Excel();
     table2excel.export(document.querySelectorAll("#table"));
