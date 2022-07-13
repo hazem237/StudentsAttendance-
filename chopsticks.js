@@ -47,6 +47,8 @@ function change_row(index, key) {
         }
         red[index].style.display = "none";
         gray[index].style.display = "none";
+        green[index].disabled = true;
+        green[index].style.opacity = 0.60;
         counter1++;
         cc.innerHTML = counter1;
 
@@ -59,6 +61,9 @@ function change_row(index, key) {
         }
         green[index].style.display = "none";
         gray[index].style.display = "none";
+        red[index].disabled = true;
+        red[index].style.opacity = 0.60;
+
         counter2++;
         ca.innerHTML = counter2;
     }
@@ -69,6 +74,8 @@ function change_row(index, key) {
         }
         green[index].style.display = "none";
         red[index].style.display = "none";
+        gray[index].disabled = true;
+        gray[index].style.opacity = 0.60;
         counter3++;
         cl.innerHTML = counter3;
     }
@@ -84,14 +91,15 @@ function reset() {
             cells[j].style.background = "white";
         }
 
-        green[i].style.display = "inline-block";
-        red[i].style.display = "inline-block";
-        gray[i].style.display = "inline-block";
-        if (i == 1) {
-            green[0].style.display = "inline-block";
-            red[0].style.display = "inline-block";
-            gray[0].style.display = "inline-block";
-        }
+        green[i - 1].style.display = "inline-block";
+        red[i - 1].style.display = "inline-block";
+        gray[i - 1].style.display = "inline-block";
+        red[i - 1].disabled = false;
+        red[i - 1].style.opacity = 1;
+        green[i - 1].disabled = false;
+        green[i - 1].style.opacity = 1;
+        gray[i - 1].disabled = false;
+        gray[i - 1].style.opacity = 1;
         counter1 = 0;
         counter2 = 0;
         counter3 = 0;
@@ -118,6 +126,8 @@ function special_changing(v, key) {
         }
         red[v - 1].style.display = "none";
         gray[v - 1].style.display = "none";
+        green[v - 1].disabled = true;
+        green[v - 1].style.opacity = 0.60;
         counter1++;
         cc.innerHTML = counter1;
     }
@@ -128,6 +138,8 @@ function special_changing(v, key) {
         }
         green[v - 1].style.display = "none";
         gray[v - 1].style.display = "none";
+        red[v - 1].disabled = true;
+        red[v - 1].style.opacity = 0.60;
         counter2++;
         ca.innerHTML = counter2;
     }
@@ -138,6 +150,8 @@ function special_changing(v, key) {
         }
         green[v - 1].style.display = "none";
         red[v - 1].style.display = "none";
+        gray[v - 1].disabled = true;
+        gray[v - 1].style.opacity = 0.60;
         counter3++;
         cl.innerHTML = counter3;
     }
@@ -197,7 +211,7 @@ function insert() {
 
 }
 
-document.getElementById('exel').addEventListener('click',function(){
+document.getElementById('exel').addEventListener('click', function () {
     var table2excel = new Table2Excel();
     table2excel.export(document.querySelectorAll("#table"));
 });
