@@ -28,13 +28,13 @@ const my_array = [
     },
     {
         num: 4,
-        student_id: 030121,
+        student_id: 100777,
         student_name: "Motaz Mohammed"
         , Attendees: "not Determine yet"
     },
     {
         num: 5,
-        student_id: 030121,
+        student_id: 288234,
         student_name: "Aseel yaseen"
         , Attendees: "not Determine yet"
     }
@@ -61,13 +61,14 @@ const appear_adding_list = () => {
 }
 const disappear_adding_list = () => {
     grandba.style.display = "none";
+    document.getElementById('firstname').value = '';
+    document.getElementById('secondname').value = '';
+    document.getElementById('id').value = '';
 }
 
 
 
 function change_row(index, key) {
-
-
 
     let col = rows[index + 1].getElementsByTagName("td");
     if (key == 'g') {
@@ -75,7 +76,6 @@ function change_row(index, key) {
 
         for (let j = 0; j < 6; j++) {
             // col[j].style.background = "#9bfab4";
-
             var style = col[j].style;
             style.backgroundColor = "#9bfab4";
 
@@ -170,7 +170,7 @@ function special_changing(v, key) {
         green[v - 1].disabled = true;
         green[v - 1].style.opacity = 0.60;
         counter1++;
-        my_array[v-1].Attendees="Present";
+        my_array[v - 1].Attendees = "Present";
         cc.innerHTML = counter1;
     }
     else if (key == 'r') {
@@ -183,7 +183,7 @@ function special_changing(v, key) {
         red[v - 1].disabled = true;
         red[v - 1].style.opacity = 0.60;
         counter2++;
-        my_array[v-1].Attendees="Absent";
+        my_array[v - 1].Attendees = "Absent";
         ca.innerHTML = counter2;
     }
     else {
@@ -196,9 +196,45 @@ function special_changing(v, key) {
         gray[v - 1].disabled = true;
         gray[v - 1].style.opacity = 0.60;
         counter3++;
-        my_array[v-1].Attendees="Late";
+        my_array[v - 1].Attendees = "Late";
         cl.innerHTML = counter3;
     }
+
+}
+function edit_student(o) {
+    console.log(o.value);
+    let cells = rows[o.value].getElementsByTagName('td');
+    for (let i = 0; i < 6; i++) {
+        var s = cells[i].style;
+        s.background = "white";
+    }
+    green[o.value - 1].style.display = "inline-block";
+    red[o.value - 1].style.display = "inline-block";
+    gray[o.value - 1].style.display = "inline-block";
+    red[o.value - 1].disabled = false;
+    red[o.value - 1].style.opacity = 1;
+    green[o.value - 1].disabled = false;
+    green[o.value - 1].style.opacity = 1;
+    gray[o.value - 1].disabled = false;
+    gray[o.value - 1].style.opacity = 1;
+    if (my_array[o.value - 1].Attendees == "not Determine yet") {
+        alert("Dude ,  There's nothing to Edit :) !");
+    }
+    else if (my_array[o.value - 1].Attendees == "Present") {
+        counter1--;
+        cc.innerHTML = counter1;
+    }
+    else if (my_array[o.value - 1].Attendees == "Absent") {
+        counter2--;
+        ca.innerHTML = counter2;
+    }
+    else {
+        counter3--;
+        cl.innerHTML = counter3;
+    }
+
+    my_array[o.value - 1].Attendees = "not Determine yet";
+
 
 }
 
@@ -219,6 +255,7 @@ function insert() {
         var cell4 = row.insertCell(3);
         var cell5 = row.insertCell(4);
         var cell6 = row.insertCell(5);
+        var cell7 = row.insertCell(6);
 
 
         let x = document.createElement("button");
@@ -233,19 +270,25 @@ function insert() {
         z.innerHTML = "&#9201";
         z.className = "gray";
 
+        let w = document.createElement("button");
+        w.innerHTML = "Edit";
+        w.className = "Edit_button ";
+        w.value = counterNum;
 
 
-        cell1.innerHTML = counterNum;
-        cell1.value = counterNum;
-        cell2.innerHTML = id;
+
+        cell1.innerHTML = my_array.length + 1;
+        cell1.value = my_array.length + 1;
+        cell2.innerHTML = Number(id);
         cell3.innerHTML = s;
         cell4.appendChild(x);
         cell5.appendChild(y);
         cell6.appendChild(z);
+        cell7.appendChild(w);
         my_array.push(
             {
                 num: counterNum,
-                student_id: id,
+                student_id: Number(id),
                 student_name: s
                 , Attendees: "not Determine yet"
             }
@@ -256,6 +299,12 @@ function insert() {
         x.onclick = function () { special_changing(cell1.value, 'g') };
         y.onclick = function () { special_changing(cell1.value, 'r') };
         z.onclick = function () { special_changing(cell1.value, 'gr') };
+        w.onclick = function () { edit_student(this) };
+
+
+        document.getElementById('firstname').value = '';
+        document.getElementById('secondname').value = '';
+        document.getElementById('id').value = '';
     }
     else
         alert("Hello dear !!, you left our table without data, please go back and enter the data or you can simply cancel the process by clicking on the 'cancel' button");
@@ -266,23 +315,37 @@ function appear_searching_list() {
 }
 function disappear_search_list() {
     document.getElementById("grandba2").style.display = "none";
-    
+    document.getElementById('id_find').value = '';
+    document.getElementById('find').value = '';
+    document.getElementById('sn').value = '';
+    document.getElementById('sa').value = '';
+    document.getElementById('found').value = '';
+    document.getElementById('found').style.background = "white";
+
+
+
+
 }
 function find_student() {
     const id_find = document.getElementById('id_find').value;
     const find = document.getElementById('find');
     const sn = document.getElementById('sn');
     const sa = document.getElementById('sa');
-    const Found=document.getElementById('found');
+    const Found = document.getElementById('found');
     var x = new Boolean(false);
     if (id_find.length == 0)
         alert("Hello dear !!, you left us without data, please go back and enter the data or you can simply cancel the process by clicking on the 'cancel' button");
     else {
         for (let a = 0; a < my_array.length; a++) {
-            if (my_array[a].student_id == id_find) {
+            if (my_array[a].student_id === Number(id_find))
+             {
+                console.log(typeof my_array[a].student_id);
+                console.log(my_array[a].student_id);
+                console.log(typeof id_find);
+                console.log(id_find);
                 find.innerHTML = " Student Found ";
-                Found.style.background="#a9ffa6";
-                Found.style.color="black";
+                Found.style.background = "#a9ffa6";
+                Found.style.color = "black";
                 sn.innerHTML = my_array[a].student_name;
                 sa.innerHTML = my_array[a].Attendees;
                 x = true;
@@ -293,16 +356,29 @@ function find_student() {
         if (x == false) {
 
             find.innerHTML = " Student Not Found ";
-            Found.style.background="#e32110";
-            Found.style.color="white";
-            sn.innerHTML="";
-            sa.innerHTML="";
+            Found.style.background = "#e32110";
+            Found.style.color = "white";
+            sn.innerHTML = "";
+            sa.innerHTML = "";
         }
 
 
     }
+
+
 }
+function appear_add_list() {
+    document.getElementById('grandba3').style.display = "flex";
+}
+function disappear_edit_list() {
+    document.getElementById('grandba3').style.display = "none";
+}
+
+
 document.getElementById('exel').addEventListener('click', function () {
     var table2excel = new Table2Excel();
     table2excel.export(document.querySelectorAll("#table"));
 });
+
+
+
