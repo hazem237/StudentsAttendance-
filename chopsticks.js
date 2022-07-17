@@ -40,6 +40,7 @@ const my_array = [
     }
 
 ]
+/* Here is all my definded variables that i need  */
 const grandba = document.getElementById('grandba');
 const table = document.getElementById('table');
 let counterNum = 5;
@@ -56,6 +57,7 @@ var cl = document.getElementById('cl');
 var rows = table.getElementsByTagName("tbody")
 [0].getElementsByTagName("tr");
 
+/* Here is my (adding list)'s functions  from line 60 to 141*/
 const appear_adding_list = () => {
     grandba.style.display = "flex";
 }
@@ -65,179 +67,6 @@ const disappear_adding_list = () => {
     document.getElementById('secondname').value = '';
     document.getElementById('id').value = '';
 }
-
-
-
-function change_row(index, key) {
-
-    let col = rows[index + 1].getElementsByTagName("td");
-    if (key == 'g') {
-
-
-        for (let j = 0; j < 6; j++) {
-            // col[j].style.background = "#9bfab4";
-            var style = col[j].style;
-            style.backgroundColor = "#9bfab4";
-
-        }
-        red[index].style.display = "none";
-        gray[index].style.display = "none";
-        green[index].disabled = true;
-        green[index].style.opacity = 0.60;
-        counter1++;
-        cc.innerHTML = counter1;
-        my_array[index].Attendees = "Present";
-
-    }
-    else if (key == 'r') {
-
-
-        for (let j = 0; j < 6; j++) {
-            col[j].style.background = "#ff4040";
-        }
-        green[index].style.display = "none";
-        gray[index].style.display = "none";
-        red[index].disabled = true;
-        red[index].style.opacity = 0.60;
-
-        counter2++;
-        ca.innerHTML = counter2;
-        my_array[index].Attendees = "Absent";
-    }
-    else {
-
-        for (let j = 0; j < 6; j++) {
-            col[j].style.background = "#d6d6d6";
-        }
-        green[index].style.display = "none";
-        red[index].style.display = "none";
-        gray[index].disabled = true;
-        gray[index].style.opacity = 0.60;
-        counter3++;
-        cl.innerHTML = counter3;
-        my_array[index].Attendees = "late";
-    }
-
-
-}
-
-function reset() {
-    for (let i = 1; i < rows.length - 1; i++) {
-        let cells = rows[i].getElementsByTagName('td');
-
-        for (let j = 0; j < 6; j++) {
-            cells[j].style.background = "white";
-        }
-
-        green[i - 1].style.display = "inline-block";
-        red[i - 1].style.display = "inline-block";
-        gray[i - 1].style.display = "inline-block";
-        red[i - 1].disabled = false;
-        red[i - 1].style.opacity = 1;
-        green[i - 1].disabled = false;
-        green[i - 1].style.opacity = 1;
-        gray[i - 1].disabled = false;
-        gray[i - 1].style.opacity = 1;
-        counter1 = 0;
-        counter2 = 0;
-        counter3 = 0;
-        special_counter = 5;
-        cc.innerHTML = counter1;
-        ca.innerHTML = counter2;
-        cl.innerHTML = counter3;
-    }
-    for (let a = 0; a < my_array.length; a++) {
-        my_array[a].Attendees = "not Determine yet";
-    }
-
-}
-
-
-
-function special_changing(v, key) {
-    special_counter++;
-    var rows = table.getElementsByTagName("tbody")
-    [0].getElementsByTagName("tr");
-
-    let col = rows[v].getElementsByTagName("td");
-    if (key == 'g') {
-        for (let j = 0; j < 6; j++) {
-            var style = col[j].style;
-            style.backgroundColor = "#9bfab4";
-        }
-        red[v - 1].style.display = "none";
-        gray[v - 1].style.display = "none";
-        green[v - 1].disabled = true;
-        green[v - 1].style.opacity = 0.60;
-        counter1++;
-        my_array[v - 1].Attendees = "Present";
-        cc.innerHTML = counter1;
-    }
-    else if (key == 'r') {
-        for (let j = 0; j < 6; j++) {
-            var style = col[j].style;
-            style.backgroundColor = "#ff4040";
-        }
-        green[v - 1].style.display = "none";
-        gray[v - 1].style.display = "none";
-        red[v - 1].disabled = true;
-        red[v - 1].style.opacity = 0.60;
-        counter2++;
-        my_array[v - 1].Attendees = "Absent";
-        ca.innerHTML = counter2;
-    }
-    else {
-        for (let j = 0; j < 6; j++) {
-            var style = col[j].style;
-            style.backgroundColor = "#d6d6d6";
-        }
-        green[v - 1].style.display = "none";
-        red[v - 1].style.display = "none";
-        gray[v - 1].disabled = true;
-        gray[v - 1].style.opacity = 0.60;
-        counter3++;
-        my_array[v - 1].Attendees = "Late";
-        cl.innerHTML = counter3;
-    }
-
-}
-function edit_student(o) {
-    console.log(o.value);
-    let cells = rows[o.value].getElementsByTagName('td');
-    for (let i = 0; i < 6; i++) {
-        var s = cells[i].style;
-        s.background = "white";
-    }
-    green[o.value - 1].style.display = "inline-block";
-    red[o.value - 1].style.display = "inline-block";
-    gray[o.value - 1].style.display = "inline-block";
-    red[o.value - 1].disabled = false;
-    red[o.value - 1].style.opacity = 1;
-    green[o.value - 1].disabled = false;
-    green[o.value - 1].style.opacity = 1;
-    gray[o.value - 1].disabled = false;
-    gray[o.value - 1].style.opacity = 1;
-    if (my_array[o.value - 1].Attendees == "not Determine yet") {
-        alert("Dude ,  There's nothing to Edit :) !");
-    }
-    else if (my_array[o.value - 1].Attendees == "Present") {
-        counter1--;
-        cc.innerHTML = counter1;
-    }
-    else if (my_array[o.value - 1].Attendees == "Absent") {
-        counter2--;
-        ca.innerHTML = counter2;
-    }
-    else {
-        counter3--;
-        cl.innerHTML = counter3;
-    }
-
-    my_array[o.value - 1].Attendees = "not Determine yet";
-
-
-}
-
 function insert() {
 
     const first_name = document.getElementById('firstname').value;
@@ -310,6 +139,217 @@ function insert() {
         alert("Hello dear !!, you left our table without data, please go back and enter the data or you can simply cancel the process by clicking on the 'cancel' button");
 
 }
+
+/* Here is my (Button when clicked)'s functions  from line 145 to 259*/
+
+function change_row(index, key) {
+
+    let col = rows[index + 1].getElementsByTagName("td");
+    if (key == 'g') {
+
+
+        for (let j = 0; j < 6; j++) {
+            // col[j].style.background = "#9bfab4";
+            var style = col[j].style;
+            style.backgroundColor = "#9bfab4";
+
+        }
+        red[index].style.display = "none";
+        gray[index].style.display = "none";
+        green[index].disabled = true;
+        green[index].style.opacity = 0.60;
+        counter1++;
+        cc.innerHTML = counter1;
+        my_array[index].Attendees = "Present";
+        var calc = ((counter1 / my_array.length
+        ) * 100).toFixed(3);
+        document.getElementById('ccp').innerHTML = calc + '%';
+
+    }
+    else if (key == 'r') {
+
+
+        for (let j = 0; j < 6; j++) {
+            col[j].style.background = "#ff4040";
+        }
+        green[index].style.display = "none";
+        gray[index].style.display = "none";
+        red[index].disabled = true;
+        red[index].style.opacity = 0.60;
+
+        counter2++;
+        ca.innerHTML = counter2;
+        my_array[index].Attendees = "Absent";
+        var calc = ((counter2 / my_array.length
+        ) * 100).toFixed(3);
+        document.getElementById('cap').innerHTML = calc + '%';
+    }
+    else {
+
+        for (let j = 0; j < 6; j++) {
+            col[j].style.background = "#d6d6d6";
+        }
+        green[index].style.display = "none";
+        red[index].style.display = "none";
+        gray[index].disabled = true;
+        gray[index].style.opacity = 0.60;
+        counter3++;
+        cl.innerHTML = counter3;
+        my_array[index].Attendees = "late";
+        var calc = ((counter3 / my_array.length
+        ) * 100).toFixed(3);
+        document.getElementById('clp').innerHTML = calc + '%';
+    }
+}
+/* I am sorry for this function but i had to do it , about new student buttons*/ 
+function special_changing(v, key) {
+    special_counter++;
+    var rows = table.getElementsByTagName("tbody")
+    [0].getElementsByTagName("tr");
+
+    let col = rows[v].getElementsByTagName("td");
+    if (key == 'g') {
+        for (let j = 0; j < 6; j++) {
+            var style = col[j].style;
+            style.backgroundColor = "#9bfab4";
+        }
+        red[v - 1].style.display = "none";
+        gray[v - 1].style.display = "none";
+        green[v - 1].disabled = true;
+        green[v - 1].style.opacity = 0.60;
+        counter1++;
+        my_array[v - 1].Attendees = "Present";
+        cc.innerHTML = counter1;
+        var calc = ((counter1 / my_array.length
+        ) * 100).toFixed(3);
+        document.getElementById('ccp').innerHTML = calc + '%';
+    }
+    else if (key == 'r') {
+        for (let j = 0; j < 6; j++) {
+            var style = col[j].style;
+            style.backgroundColor = "#ff4040";
+        }
+        green[v - 1].style.display = "none";
+        gray[v - 1].style.display = "none";
+        red[v - 1].disabled = true;
+        red[v - 1].style.opacity = 0.60;
+        counter2++;
+        my_array[v - 1].Attendees = "Absent";
+        ca.innerHTML = counter2;
+        var calc = ((counter2 / my_array.length
+        ) * 100).toFixed(3);
+        document.getElementById('cap').innerHTML = calc + '%';
+    }
+    else {
+        for (let j = 0; j < 6; j++) {
+            var style = col[j].style;
+            style.backgroundColor = "#d6d6d6";
+        }
+        green[v - 1].style.display = "none";
+        red[v - 1].style.display = "none";
+        gray[v - 1].disabled = true;
+        gray[v - 1].style.opacity = 0.60;
+        counter3++;
+        my_array[v - 1].Attendees = "Late";
+        cl.innerHTML = counter3;
+        var calc = ((counter3 / my_array.length
+        ) * 100).toFixed(3);
+        document.getElementById('clp').innerHTML = calc + '%';
+    }
+
+}
+
+/* this function clear the table */
+
+function reset() {
+    counter1 = 0;
+    counter2 = 0;
+    counter3 = 0;
+    special_counter = 5;
+    cc.innerHTML = counter1;
+    ca.innerHTML = counter2;
+    cl.innerHTML = counter3;
+    document.getElementById('ccp').innerHTML = '0';
+    document.getElementById('cap').innerHTML = '0';
+    document.getElementById('clp').innerHTML = '0';
+    for (let a = 0; a < my_array.length; a++) {
+        my_array[a].Attendees = "not Determine yet";
+    }
+    for (let i = 1; i < rows.length - 1; i++) {
+        let cells = rows[i].getElementsByTagName('td');
+
+        for (let j = 0; j < 6; j++) {
+            var style =cells[j].style;
+            style.backgroundColor = "white";
+        }
+
+        green[i - 1].style.display = "inline-block";
+        red[i - 1].style.display = "inline-block";
+        gray[i - 1].style.display = "inline-block";
+        red[i - 1].disabled = false;
+        red[i - 1].style.opacity = 1;
+        green[i - 1].disabled = false;
+        green[i - 1].style.opacity = 1;
+        gray[i - 1].disabled = false;
+        gray[i - 1].style.opacity = 1;
+
+    }
+
+   
+
+}
+
+
+/*This function edit each student Attendece */
+
+function edit_student(o) {
+    console.log(o.value);
+    let cells = rows[o.value].getElementsByTagName('td');
+    for (let i = 0; i < 6; i++) {
+        var s = cells[i].style;
+        s.background = "white";
+    }
+    green[o.value - 1].style.display = "inline-block";
+    red[o.value - 1].style.display = "inline-block";
+    gray[o.value - 1].style.display = "inline-block";
+    red[o.value - 1].disabled = false;
+    red[o.value - 1].style.opacity = 1;
+    green[o.value - 1].disabled = false;
+    green[o.value - 1].style.opacity = 1;
+    gray[o.value - 1].disabled = false;
+    gray[o.value - 1].style.opacity = 1;
+    if (my_array[o.value - 1].Attendees == "not Determine yet") {
+        alert("Dude ,  There's nothing to Edit :) !");
+    }
+    else if (my_array[o.value - 1].Attendees == "Present") {
+        counter1--;
+        cc.innerHTML = counter1;
+        var calc = ((counter1 / my_array.length
+        ) * 100).toFixed(3);
+        document.getElementById('ccp').innerHTML = calc + '%';
+
+    }
+    else if (my_array[o.value - 1].Attendees == "Absent") {
+        counter2--;
+        ca.innerHTML = counter2;
+        var calc = ((counter2 / my_array.length
+        ) * 100).toFixed(3);
+        document.getElementById('cap').innerHTML = calc + '%';
+    }
+    else {
+        counter3--;
+        cl.innerHTML = counter3;
+        var calc = ((counter3 / my_array.length
+        ) * 100).toFixed(3);
+        document.getElementById('clp').innerHTML = calc + '%';
+    }
+
+    my_array[o.value - 1].Attendees = "not Determine yet";
+
+
+}
+
+/* These all my searching functions */
 function appear_searching_list() {
     document.getElementById("grandba2").style.display = "flex";
 }
@@ -337,8 +377,7 @@ function find_student() {
         alert("Hello dear !!, you left us without data, please go back and enter the data or you can simply cancel the process by clicking on the 'cancel' button");
     else {
         for (let a = 0; a < my_array.length; a++) {
-            if (my_array[a].student_id === Number(id_find))
-             {
+            if (my_array[a].student_id === Number(id_find)) {
                 console.log(typeof my_array[a].student_id);
                 console.log(my_array[a].student_id);
                 console.log(typeof id_find);
@@ -367,6 +406,7 @@ function find_student() {
 
 
 }
+
 function appear_add_list() {
     document.getElementById('grandba3').style.display = "flex";
 }
@@ -374,7 +414,7 @@ function disappear_edit_list() {
     document.getElementById('grandba3').style.display = "none";
 }
 
-
+/* this for My Exel save */
 document.getElementById('exel').addEventListener('click', function () {
     var table2excel = new Table2Excel();
     table2excel.export(document.querySelectorAll("#table"));
