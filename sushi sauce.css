@@ -38,7 +38,7 @@ td {
 }
 
 td:nth-last-child(-n+1) {
-   
+
     background-color: transparent;
     border: 1px dotted white;
 
@@ -373,14 +373,14 @@ button {
     border-radius: 30px;
     color: black;
     font-size: small;
-    
+
 
 }
 
 
 .Edit_button:before {
     content: '';
-    background: linear-gradient(61deg, #ffee07c9 10%, #ffae0063 35% ,#ffae00);
+    background: linear-gradient(61deg, #ffee07c9 10%, #ffae0063 35%, #ffae00);
     position: absolute;
     top: -12px;
     left: -15px;
@@ -388,7 +388,7 @@ button {
     z-index: -1;
     filter: blur(7px);
     width: 90px;
-    height:50px;
+    height: 50px;
     animation: glowing 20s linear infinite;
     opacity: 0;
     transition: opacity .3s ease-in-out;

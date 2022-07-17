@@ -201,7 +201,7 @@ function change_row(index, key) {
         document.getElementById('clp').innerHTML = calc + '%';
     }
 }
-/* I am sorry for this function but i had to do it , about new student buttons*/ 
+/* I am sorry for this function but i had to do it , about new student buttons*/
 function special_changing(v, key) {
     special_counter++;
     var rows = table.getElementsByTagName("tbody")
@@ -279,7 +279,7 @@ function reset() {
         let cells = rows[i].getElementsByTagName('td');
 
         for (let j = 0; j < 6; j++) {
-            var style =cells[j].style;
+            var style = cells[j].style;
             style.backgroundColor = "white";
         }
 
@@ -295,7 +295,7 @@ function reset() {
 
     }
 
-   
+
 
 }
 
